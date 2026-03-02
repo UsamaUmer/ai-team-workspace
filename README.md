@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+AI Team Workspace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend SaaS Architecture Project (React + TypeScript)
 
-Currently, two official plugins are available:
+📌 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+AI Team Workspace is a modular SaaS-style dashboard application built using React and TypeScript to simulate a production-grade frontend architecture.
 
-## React Compiler
+The project focuses on scalable folder structure, strict typing, role-based access control (RBAC), structured API integration, and enterprise-level state management.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🏗 Architecture
 
-## Expanding the ESLint configuration
+The application follows a layered architecture pattern:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+UI Layer → Store Layer → Service Layer → API Layer
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+This ensures:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Clear separation of concerns
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Scalable and maintainable codebase
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Modular business logic abstraction
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Reusable component system
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🔐 Role-Based Access Control (RBAC)
+
+Implemented a complete RBAC system including:
+
+Permission-based conditional rendering
+
+Protected routes using guard components
+
+Role escalation protection
+
+Prevention of self-deletion
+
+Prevention of self-role modification
+
+Protection against deletion of the last admin
+
+This simulates real enterprise authorization patterns.
+
+🌐 API Integration
+
+REST API abstraction using Axios
+
+JSON Server used to simulate backend architecture
+
+Structured service modules
+
+Async/await patterns
+
+Centralized error handling
+
+Loading state management
+
+⚡ State Management
+
+Zustand for global state management
+
+Custom hooks for logic abstraction
+
+Optimistic UI updates
+
+Server-state synchronization patterns
+
+🧩 Reusable UI Components
+
+Dropdown components
+
+Modal dialogs
+
+Confirmation dialogs
+
+Structured layout components
+
+Designed for scalability and composability.
+
+🛠 Tech Stack
+
+React
+
+TypeScript
+
+Zustand
+
+Axios
+
+JSON Server
