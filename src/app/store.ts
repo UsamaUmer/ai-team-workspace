@@ -4,6 +4,12 @@ import { create } from "zustand";
 import type { User } from "../types/user.types";
 import type { Project } from "../types/project.types";
 import type { Activity } from "../types/activity.types";
+import {
+  fetchUsers,
+  createUserApi,
+  deleteUserApi,
+  updateUserApi,
+} from "../services/user.service";
 
 import { users, projects, activities, USER_IDS } from "../data/seed";
 
@@ -22,6 +28,7 @@ export interface AppState {
   /* -------------------
      ACTIONS / MUTATIONS
   ------------------- */
+  loadUsers: () => Promise<void>;
   login: (email: string, password: string) => boolean;
   setCurrentUser: (user: User | null) => void;
   createUser: (user: User) => void;
@@ -107,8 +114,26 @@ export const useAppStore = create<AppState>((set, get) => ({
     // login successfully
     return true;
   },
-  deleteUser: (id) =>
-    set((state) => ({ users: state.users.filter((u) => u.id !== id) })),
+
+  // from localhost://3000
+  loadUsers: async () => {
+    try {
+      const users = await fetchUsers();
+      set({ users });
+    } catch (error) {
+      console.error("Failed to load users", error);
+    }
+  },
+  deleteUser: async (id) => {
+    try {
+      await deleteUserApi(id);
+      set((state) => ({
+        users: state.users.filter((u) => u.id !== id),
+      }));
+    } catch (error) {
+      console.error("Delete failed", error);
+    }
+  },
   // Set or switch current user
   setCurrentUser: (user) => {
     if (user) {
@@ -120,31 +145,29 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   // Add a new user
-  createUser: (user) => set((state) => ({ users: [...state.users, user] })),
+  createUser: async (user) => {
+    try {
+      const savedUser = await createUserApi(user);
+      set((state) => ({
+        users: [...state.users, savedUser],
+      }));
+    } catch (error) {
+      console.error("Create user failed", error);
+      throw error;
+    }
+  },
 
   // Update existing user by ID
-  updateUser: (id, data) =>
-    set((state) => {
-      const updatedUsers = state.users.map((u) =>
-        u.id === id ? { ...u, ...data, updatedAt: nowISO() } : u,
-      );
-
-      // If current user is the one being updated, sync localStorage
-      let updatedCurrentUser = state.currentUser;
-      if (state.currentUser?.id === id) {
-        updatedCurrentUser = {
-          ...state.currentUser,
-          ...data,
-          updatedAt: nowISO(),
-        };
-        localStorage.setItem("currentUser", JSON.stringify(updatedCurrentUser));
-      }
-
-      return {
-        users: updatedUsers,
-        currentUser: updatedCurrentUser,
-      };
-    }),
+  updateUser: async (id, data) => {
+    try {
+      const updatedUser = await updateUserApi(id, data);
+      set((state) => ({
+        users: state.users.map((u) => (u.id === id ? updatedUser : u)),
+      }));
+    } catch (error) {
+      console.error("Update failed", error);
+    }
+  },
 
   // Add a new project
   addProject: (project) =>

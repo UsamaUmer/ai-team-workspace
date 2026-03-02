@@ -1,6 +1,7 @@
 import UsersTable from "./components/UsersTable";
 import UserFormModal from "./components/UserFormModal";
-import { useState } from "react";
+import { useAppStore } from "../../app/store";
+import { useState, useEffect } from "react";
 
 import { useHasPermission } from "../../hooks/useHasPermission";
 
@@ -8,12 +9,15 @@ function UsersPage() {
   const canViewUsers = useHasPermission("VIEW_USERS");
   const canCreateUser = useHasPermission("CREATE_USER");
 
+  const loadUsers = useAppStore((state) => state.loadUsers);
+  useEffect(() => {
+    loadUsers();
+  }, []);
+
   const [isCreateOpen, setIsCreateOpen] = useState(false);
 
   const openCreateModal = () => setIsCreateOpen(true);
   const closeCreateModal = () => setIsCreateOpen(false);
-
-
 
   if (!canViewUsers) return null;
 
