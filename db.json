@@ -1,5 +1,58 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "name": "Ali Super",
+      "email": "alisuper@saas.com",
+      "password": "alisuperAdmin",
+      "role": "SUPER_ADMIN",
+      "status": "ACTIVE",
+      "createdAt": "2026-03-03T05:57:57.066Z",
+      "updatedAt": "2026-03-03T07:11:18.053Z",
+      "lastLogin": "2026-03-03T07:11:18.053Z"
+    },
+    {
+      "id": "e9b1f00d-5d40-4cfe-ab3d-1ba118c6ee59",
+      "name": "Ahmer",
+      "email": "ahmer@gmail.com",
+      "password": "ahmer@",
+      "role": "ADMIN",
+      "status": "SUSPENDED",
+      "createdAt": "2026-03-03T06:11:36.347Z",
+      "updatedAt": "2026-03-03T07:07:54.493Z",
+      "lastLogin": "2026-03-03T07:07:54.493Z"
+    },
+    {
+      "id": "c412c91b-e0b2-44ba-b3ab-6c95fc985642",
+      "name": "Akbar",
+      "email": "akbar@gmail.com",
+      "password": "akbar@",
+      "role": "MEMBER",
+      "status": "ACTIVE",
+      "createdAt": "2026-03-03T06:23:56.150Z",
+      "updatedAt": "2026-03-03T07:11:00.124Z",
+      "lastLogin": "2026-03-03T07:11:00.124Z"
+    },
+    {
+      "id": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "name": "raza",
+      "email": "raza@gmail.com",
+      "password": "raza@@",
+      "role": "ADMIN",
+      "status": "ACTIVE",
+      "createdAt": "2026-03-03T06:42:47.585Z",
+      "updatedAt": "2026-03-03T06:42:47.585Z"
+    }
+  ],
   "projects": [],
-  "activities": []
+  "activities": [
+    {
+      "id": "1f6ae3cf-925b-4af2-a2d2-4675b314791e",
+      "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "action": "USER_SUSPENDED",
+      "entityType": "USER",
+      "entityId": "e9b1f00d-5d40-4cfe-ab3d-1ba118c6ee59",
+      "timestamp": "2026-03-03T10:11:02.278Z"
+    }
+  ]
 }

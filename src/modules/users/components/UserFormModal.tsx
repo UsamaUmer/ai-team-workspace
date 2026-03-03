@@ -30,26 +30,29 @@ function UserFormModal({ open, onClose }: UserFormModalProps) {
     setError(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validation on form input
     if (!name || !email || !password) {
       setError("All fields are required.");
       return;
     }
+
     if (password.length < 6) {
       setError("Password must be at least 6 characters.");
       return;
     }
-    const emailExist = users.some((uemail) => uemail.email.toLowerCase() === email.toLowerCase());
+
+    const emailExist = users.some(
+      (u) => u.email.toLowerCase() === email.toLowerCase(),
+    );
+
     if (emailExist) {
       setError("Email already exists.");
       return;
     }
-    if (!currentUser) return;
 
-    // create new user to add
+    if (!currentUser) return;
 
     const newUser: User = {
       id: crypto.randomUUID(),
@@ -62,22 +65,24 @@ function UserFormModal({ open, onClose }: UserFormModalProps) {
       updatedAt: nowISO(),
     };
 
-    createUser(newUser); // adding new user
+    try {
+      await createUser(newUser);
 
-    // adding activity
-    addActivity({
-      id: crypto.randomUUID(),
-      action: "USER_CREATED",
-      entityType: "USER",
-      entityId: newUser.id,
-      userId: currentUser.id,
-      timestamp: nowISO(),
-      metadata: { name: newUser.name, email: newUser.email },
-    });
+      addActivity({
+        id: crypto.randomUUID(),
+        action: "USER_CREATED",
+        entityType: "USER",
+        entityId: newUser.id,
+        userId: currentUser.id,
+        timestamp: nowISO(),
+        metadata: { name: newUser.name, email: newUser.email },
+      });
 
-    resetForm();
-    onClose();
-
+      resetForm();
+      onClose();
+    } catch {
+      setError("Something went wrong");
+    }
   };
 
   return (
@@ -114,7 +119,9 @@ function UserFormModal({ open, onClose }: UserFormModalProps) {
             value={role}
             onChange={(e) => setRole(e.target.value as Role)}
           >
-            {currentUser?.role === "SUPER_ADMIN" && <option value="SUPER_ADMIN">SUPER_ADMIN</option>}
+            {currentUser?.role === "SUPER_ADMIN" && (
+              <option value="SUPER_ADMIN">SUPER_ADMIN</option>
+            )}
             <option value="ADMIN">ADMIN</option>
             <option value="MEMBER">MEMBER</option>
             <option value="VIEWER">VIEWER</option>

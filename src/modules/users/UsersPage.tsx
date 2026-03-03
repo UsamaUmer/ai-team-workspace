@@ -8,6 +8,7 @@ import { useHasPermission } from "../../hooks/useHasPermission";
 function UsersPage() {
   const canViewUsers = useHasPermission("VIEW_USERS");
   const canCreateUser = useHasPermission("CREATE_USER");
+  const isLoading = useAppStore((state) => state.isLoading);
 
   const loadUsers = useAppStore((state) => state.loadUsers);
   useEffect(() => {
@@ -34,7 +35,7 @@ function UsersPage() {
           </button>
         )}
       </div>
-      <UsersTable></UsersTable>
+      {isLoading ? <p>Loading Users...</p> : <UsersTable></UsersTable>}
       <UserFormModal open={isCreateOpen} onClose={closeCreateModal} />
     </div>
   );

@@ -3,8 +3,18 @@ import { useAppStore } from "../../app/store";
 import StatsCard from "./components/StatsCard";
 import ActivityFeed from "./components/ActivityFeed";
 import ProjectsOverview from "./components/ProjectsOverview";
+import { useEffect } from "react";
 
 function DashboardPage() {
+  const loadUsers = useAppStore((state)=> {return state.loadUsers});
+  const loadActivities = useAppStore((state)=> {return state.loadActivities});
+  const loadProjects = useAppStore((state)=>{return state.loadProjects});
+  useEffect(() => {
+    loadUsers();
+    loadActivities();
+    loadProjects();
+  }, []);
+
   const users = useAppStore((state) => state.users);
   const projects = useAppStore((state) => state.projects);
   const activities = useAppStore((state) => state.activities);

@@ -1,192 +1,194 @@
-// import ConfirmModal from '../../../components/ui/ConfirmModal';
-// import { useAppStore } from '../../../app/store';
-// import { useHasPermission } from '../../../hooks/useHasPermission';
-// import { useState } from 'react';
-// import type { User } from '../../../types/user.types';
-// import type { Activity } from '../../../types/activity.types';
+/*
+import ConfirmModal from '../../../components/ui/ConfirmModal';
+import { useAppStore } from '../../../app/store';
+import { useHasPermission } from '../../../hooks/useHasPermission';
+import { useState } from 'react';
+import type { User } from '../../../types/user.types';
+import type { Activity } from '../../../types/activity.types';
 
-// const nowISO = () => new Date().toISOString();
+const nowISO = () => new Date().toISOString();
 
-// function UsersTable() {
-//   const users = useAppStore((s) => s.users);
-//   const currentUser = useAppStore((s) => s.currentUser);
-//   const updateUser = useAppStore((s) => s.updateUser);
-// //   const setState = useAppStore.setState;
-//   const addActivity = useAppStore((s) => s.addActivity);
+function UsersTable() {
+  const users = useAppStore((s) => s.users);
+  const currentUser = useAppStore((s) => s.currentUser);
+  const updateUser = useAppStore((s) => s.updateUser);
+//   const setState = useAppStore.setState;
+  const addActivity = useAppStore((s) => s.addActivity);
 
-//   const canEdit = useHasPermission("EDIT_USER");
-//   const canDelete = useHasPermission("DELETE_USER");
+  const canEdit = useHasPermission("EDIT_USER");
+  const canDelete = useHasPermission("DELETE_USER");
 
-//   const [openId, setOpenId] = useState<string | null>(null);
-//   const [confirmUser, setConfirmUser] = useState<User | null>(null);
+  const [openId, setOpenId] = useState<string | null>(null);
+  const [confirmUser, setConfirmUser] = useState<User | null>(null);
 
-//   function toggleDropdown(id: string) {
-//     setOpenId((prev) => (prev === id ? null : id));
-//   }
+  function toggleDropdown(id: string) {
+    setOpenId((prev) => (prev === id ? null : id));
+  }
 
-//   function isLastAdmin(user: User): boolean {
-//     const admins = users.filter(
-//       (u) => u.role === "ADMIN" || u.role === "SUPER_ADMIN",
-//     );
-//     return admins.length <= 1 && user.role === "ADMIN";
-//   }
+  function isLastAdmin(user: User): boolean {
+    const admins = users.filter(
+      (u) => u.role === "ADMIN" || u.role === "SUPER_ADMIN",
+    );
+    return admins.length <= 1 && user.role === "ADMIN";
+  }
 
-//   function handleDeleteClick(user: User) {
-//     if (!currentUser) return;
+  function handleDeleteClick(user: User) {
+    if (!currentUser) return;
 
-//     if (user.id === currentUser.id) {
-//       alert("You cannot delete yourself");
-//       return;
-//     }
+    if (user.id === currentUser.id) {
+      alert("You cannot delete yourself");
+      return;
+    }
 
-//     if (isLastAdmin(user)) {
-//       alert("Cannot delete last admin");
-//       return;
-//     }
+    if (isLastAdmin(user)) {
+      alert("Cannot delete last admin");
+      return;
+    }
 
-//     setConfirmUser(user);
-//   }
+    setConfirmUser(user);
+  }
 
-//   function confirmDelete() {
-//     if (!confirmUser || !currentUser) return;
+  function confirmDelete() {
+    if (!confirmUser || !currentUser) return;
 
-//     useAppStore.setState((state) => ({
-//       users: state.users.filter((u) => u.id !== confirmUser.id),
-//     }));
+    useAppStore.setState((state) => ({
+      users: state.users.filter((u) => u.id !== confirmUser.id),
+    }));
 
-//     const activity: Activity = {
-//       id: crypto.randomUUID(),
-//       userId: currentUser.id,
-//       action: "USER_DELETED",
-//       entityType: "USER",
-//       entityId: confirmUser.id,
-//       timestamp: nowISO(),
-//     };
+    const activity: Activity = {
+      id: crypto.randomUUID(),
+      userId: currentUser.id,
+      action: "USER_DELETED",
+      entityType: "USER",
+      entityId: confirmUser.id,
+      timestamp: nowISO(),
+    };
 
-//     addActivity(activity);
-//     setConfirmUser(null);
-//   }
+    addActivity(activity);
+    setConfirmUser(null);
+  }
 
-//   function handleSuspendToggle(user: User) {
-//     if (!currentUser) return;
+  function handleSuspendToggle(user: User) {
+    if (!currentUser) return;
 
-//     const newStatus = user.status === "ACTIVE" ? "SUSPENDED" : "ACTIVE";
+    const newStatus = user.status === "ACTIVE" ? "SUSPENDED" : "ACTIVE";
 
-//     updateUser(user.id, { status: newStatus });
+    updateUser(user.id, { status: newStatus });
 
-//     const activity: Activity = {
-//       id: crypto.randomUUID(),
-//       userId: currentUser.id,
-//       action: newStatus === "SUSPENDED" ? "USER_SUSPENDED" : "USER_ACTIVATED",
-//       entityType: "USER",
-//       entityId: user.id,
-//       timestamp: nowISO(),
-//     };
+    const activity: Activity = {
+      id: crypto.randomUUID(),
+      userId: currentUser.id,
+      action: newStatus === "SUSPENDED" ? "USER_SUSPENDED" : "USER_ACTIVATED",
+      entityType: "USER",
+      entityId: user.id,
+      timestamp: nowISO(),
+    };
 
-//     addActivity(activity);
-//   }
+    addActivity(activity);
+  }
 
-//   function handleRoleChange(user: User) {
-//     if (!currentUser) return;
+  function handleRoleChange(user: User) {
+    if (!currentUser) return;
 
-//     if (user.role === "SUPER_ADMIN") return;
+    if (user.role === "SUPER_ADMIN") return;
 
-//     if (user.id === currentUser.id) {
-//       alert("You cannot change your own role");
-//       return;
-//     }
+    if (user.id === currentUser.id) {
+      alert("You cannot change your own role");
+      return;
+    }
 
-//     const newRole = user.role === "ADMIN" ? "MEMBER" : "ADMIN";
+    const newRole = user.role === "ADMIN" ? "MEMBER" : "ADMIN";
 
-//     updateUser(user.id, { role: newRole });
+    updateUser(user.id, { role: newRole });
 
-//     const activity: Activity = {
-//       id: crypto.randomUUID(),
-//       userId: currentUser.id,
-//       action: "ROLE_CHANGED",
-//       entityType: "USER",
-//       entityId: user.id,
-//       timestamp: nowISO(),
-//       metadata: {
-//         oldValue: user.role,
-//         newValue: newRole,
-//       },
-//     };
+    const activity: Activity = {
+      id: crypto.randomUUID(),
+      userId: currentUser.id,
+      action: "ROLE_CHANGED",
+      entityType: "USER",
+      entityId: user.id,
+      timestamp: nowISO(),
+      metadata: {
+        oldValue: user.role,
+        newValue: newRole,
+      },
+    };
 
-//     addActivity(activity);
-//   }
+    addActivity(activity);
+  }
 
-//   return (
-//     <>
-//       <table width="100%" border={1} cellPadding={8}>
-//         <thead>
-//           <tr>
-//             <th>Name</th>
-//             <th>Email</th>
-//             <th>Role</th>
-//             <th>Status</th>
-//             <th>Last Login</th>
-//             <th>Actions</th>
-//           </tr>
-//         </thead>
+  return (
+    <>
+      <table width="100%" border={1} cellPadding={8}>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Last Login</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
-//         <tbody>
-//           {users.map((user) => (
-//             <tr key={user.id}>
-//               <td>{user.name}</td>
-//               <td>{user.email}</td>
-//               <td>{user.role}</td>
-//               <td>{user.status}</td>
-//               <td>{user.lastLogin ?? "Never"}</td>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>{user.role}</td>
+              <td>{user.status}</td>
+              <td>{user.lastLogin ?? "Never"}</td>
 
-//               <td>
-//                 {(canEdit || canDelete) && (
-//                   <>
-//                     <button onClick={() => toggleDropdown(user.id)}>⋮</button>
+              <td>
+                {(canEdit || canDelete) && (
+                  <>
+                    <button onClick={() => toggleDropdown(user.id)}>⋮</button>
 
-//                     {openId === user.id && (
-//                       <div style={{ background: "#eee", padding: 8 }}>
-//                         {canEdit && (
-//                           <>
-//                             <button onClick={() => handleRoleChange(user)}>
-//                               Change Role
-//                             </button>
+                    {openId === user.id && (
+                      <div style={{ background: "#eee", padding: 8 }}>
+                        {canEdit && (
+                          <>
+                            <button onClick={() => handleRoleChange(user)}>
+                              Change Role
+                            </button>
 
-//                             <button onClick={() => handleSuspendToggle(user)}>
-//                               {user.status === "ACTIVE"
-//                                 ? "Suspend"
-//                                 : "Activate"}
-//                             </button>
-//                           </>
-//                         )}
+                            <button onClick={() => handleSuspendToggle(user)}>
+                              {user.status === "ACTIVE"
+                                ? "Suspend"
+                                : "Activate"}
+                            </button>
+                          </>
+                        )}
 
-//                         {canDelete && (
-//                           <button onClick={() => handleDeleteClick(user)}>
-//                             Delete
-//                           </button>
-//                         )}
-//                       </div>
-//                     )}
-//                   </>
-//                 )}
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
+                        {canDelete && (
+                          <button onClick={() => handleDeleteClick(user)}>
+                            Delete
+                          </button>
+                        )}
+                      </div>
+                    )}
+                  </>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-//       <ConfirmModal
-//         open={!!confirmUser}
-//         title="Confirm Delete"
-//         description={`Are you sure you want to delete ${confirmUser?.name}?`}
-//         onCancel={() => setConfirmUser(null)}
-//         onConfirm={confirmDelete}
-//       />
-//     </>
-//   );
-// }
+      <ConfirmModal
+        open={!!confirmUser}
+        title="Confirm Delete"
+        description={`Are you sure you want to delete ${confirmUser?.name}?`}
+        onCancel={() => setConfirmUser(null)}
+        onConfirm={confirmDelete}
+      />
+    </>
+  );
+}
 
-// export default UsersTable;
+export default UsersTable;
+*/
 
 import { useState, useRef, useEffect } from "react";
 import { useAppStore } from "../../../app/store";
@@ -272,10 +274,10 @@ function UsersTable() {
 
   // Confirming delete user
 
-  function confirmDelete() {
+  async function confirmDelete () {
     if (!confirmUser || !currentUser) return;
 
-    deleteUser(confirmUser.id);
+    await deleteUser(confirmUser.id);
 
     const activity: Activity = {
       id: crypto.randomUUID(),
