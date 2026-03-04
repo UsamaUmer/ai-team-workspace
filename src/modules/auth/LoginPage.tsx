@@ -10,10 +10,10 @@ function LoginPage() {
   const navigate = useNavigate();
   const login = useAppStore((state) => state.login);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    const success = login(email, password);
+    const success = await login(email, password);
     if (!success) {
       setError("Invalid credentials or user not active.");
       return;

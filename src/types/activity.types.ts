@@ -13,6 +13,7 @@ export type ActivityAction =
   | "PROJECT_CREATED"
   | "PROJECT_UPDATED"
   | "PROJECT_ARCHIVED"
+  | "PROJECT_DELETED"
   | "USER_LOGIN";
 
 export interface Activity {

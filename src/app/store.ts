@@ -103,7 +103,9 @@ export const useAppStore = create<AppState>((set, get) => ({
       // Always fetch fresh users from backend
       const users = await fetchUsers();
 
-      const user = users.find((u) => u.email === email);
+      const user = users.find(
+        (u) => u.email.toLowerCase() === email.toLowerCase().trim(),
+      );
 
       if (!user) {
         set({ isLoading: false });
@@ -121,12 +123,26 @@ export const useAppStore = create<AppState>((set, get) => ({
       });
 
       localStorage.setItem("currentUser", JSON.stringify(updatedUser));
-
-      set({
-        currentUser: updatedUser,
-        users,
-        isLoading: false,
+      await get().addActivity({
+        id: crypto.randomUUID(),
+        userId: updatedUser.id,
+        action: "USER_LOGIN",
+        entityType: "USER",
+        entityId: updatedUser.id,
+        timestamp: nowISO(),
+        metadata: {
+          name: updatedUser.name,
+          email: updatedUser.email,
+        },
       });
+
+      set((state) => ({
+        currentUser: updatedUser,
+        users: state.users.map((u) =>
+          u.id === updatedUser.id ? updatedUser : u,
+        ),
+        isLoading: false,
+      }));
 
       return true;
     } catch (error) {
