@@ -1,22 +1,18 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAppStore } from "../../../app/store";
-import type { Project } from "../../../types/project.types";
 import type { User } from "../../../types/user.types";
+import type { Project } from "../../../types/project.types";
 
-interface ProjectFormModalProps {
+interface ProjectEditModalProps {
   open: boolean;
+  project: Project | null;
   onClose: () => void;
 }
 
 const nowISO = () => new Date().toISOString();
 
-function ProjectFormModal({ open, onClose }: ProjectFormModalProps) {
-  const { users, currentUser, createProject, addActivity, loadUsers } =
-    useAppStore();
-
-  useEffect(() => {
-    loadUsers();
-  }, [open, loadUsers]);
+function ProjectEditModal({ open, project, onClose }: ProjectEditModalProps) {
+  const { users, currentUser, updateProject, addActivity } = useAppStore();
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -25,11 +21,19 @@ function ProjectFormModal({ open, onClose }: ProjectFormModalProps) {
   const [members, setMembers] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  if (!open) {
-    return null;
-  }
-
   const activeUsers = users.filter((u) => u.status === "ACTIVE");
+
+  useEffect(() => {
+    if (project) {
+      setName(project.name);
+      setDescription(project.description);
+      setVisibility(project.visibility);
+      setAiModel(project.aiModel || "gpt-4");
+      setMembers(project.members || []);
+    }
+  }, [project]);
+
+  if (!open || !project) return null;
 
   function toggleMember(userId: string) {
     setMembers((prev) =>
@@ -43,66 +47,50 @@ function ProjectFormModal({ open, onClose }: ProjectFormModalProps) {
     e.preventDefault();
 
     if (!name.trim()) {
-      setError("Project name required");
+      setError("Project name Required");
       return;
     }
-
     if (!description.trim()) {
-      setError("Description required");
+      setError("Description Required");
       return;
     }
-
     if (members.length === 0) {
       setError("Select at least one member");
       return;
     }
 
     if (!currentUser) return;
-
-    const newProject: Project = {
-      id: crypto.randomUUID(),
-      name,
-      description,
-      status: "ACTIVE",
-      visibility,
-      members,
-      createdBy: currentUser.id,
-      aiModel,
-      createdAt: nowISO(),
-      updatedAt: nowISO(),
-    };
-
+    if (!project) return;
     try {
-      await createProject(newProject);
+      await updateProject(project.id, {
+        name,
+        description,
+        visibility,
+        aiModel,
+        members,
+        updatedAt: nowISO(),
+      });
 
       await addActivity({
         id: crypto.randomUUID(),
-        action: "PROJECT_CREATED",
+        action: "PROJECT_UPDATED",
         entityType: "PROJECT",
-        entityId: newProject.id,
+        entityId: project.id,
         userId: currentUser.id,
         timestamp: nowISO(),
-        metadata: { name: newProject.name },
+        metadata: { name },
       });
 
-      resetForm();
       onClose();
     } catch {
-      setError("Failed to create project");
+      setError("Update failed");
     }
-  }
-
-  function resetForm() {
-    setName("");
-    setDescription("");
-    setMembers([]);
-    setError(null);
   }
 
   return (
     <div style={overlayStyle}>
       <div style={modalStyle}>
-        <h3>Create Project</h3>
+        <h3>Edit Project</h3>
 
         {error && <p style={{ color: "red" }}>{error}</p>}
 
@@ -153,12 +141,11 @@ function ProjectFormModal({ open, onClose }: ProjectFormModalProps) {
           </div>
 
           <div style={{ marginTop: "12px" }}>
-            <button type="submit">Create</button>
+            <button type="submit">Save Changes</button>
 
             <button
               type="button"
               onClick={() => {
-                resetForm();
                 onClose();
               }}
             >
@@ -171,7 +158,7 @@ function ProjectFormModal({ open, onClose }: ProjectFormModalProps) {
   );
 }
 
-export default ProjectFormModal;
+export default ProjectEditModal;
 
 const overlayStyle: React.CSSProperties = {
   position: "fixed",

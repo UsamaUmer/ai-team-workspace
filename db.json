@@ -41,8 +41,8 @@
       "role": "ADMIN",
       "status": "ACTIVE",
       "createdAt": "2026-03-03T06:42:47.585Z",
-      "updatedAt": "2026-03-04T11:08:18.761Z",
-      "lastLogin": "2026-03-04T11:08:18.761Z"
+      "updatedAt": "2026-03-05T09:16:06.325Z",
+      "lastLogin": "2026-03-05T09:16:06.325Z"
     }
   ],
   "projects": [
@@ -82,12 +82,28 @@
       "visibility": "TEAM",
       "members": [
         "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
-        "c412c91b-e0b2-44ba-b3ab-6c95fc985642"
+        "73bc99c0-d39a-4115-bdf6-b89a0fbfa666"
       ],
       "createdBy": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
       "aiModel": "gpt-4-turbo",
       "createdAt": "2026-03-05T07:33:30.405Z",
-      "updatedAt": "2026-03-05T07:33:30.405Z"
+      "updatedAt": "2026-03-05T11:01:05.033Z"
+    },
+    {
+      "id": "6c4d26eb-37a6-444b-b727-ad74a5b1b227",
+      "name": "AI Marketing Dashboard",
+      "description": "AI-powered marketing automation SaaS for campaign optimization.",
+      "status": "ACTIVE",
+      "visibility": "PRIVATE",
+      "members": [
+        "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+        "c412c91b-e0b2-44ba-b3ab-6c95fc985642",
+        "73bc99c0-d39a-4115-bdf6-b89a0fbfa666"
+      ],
+      "createdBy": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "aiModel": "claude-3",
+      "createdAt": "2026-03-05T08:59:02.890Z",
+      "updatedAt": "2026-03-05T08:59:02.890Z"
     }
   ],
   "activities": [
@@ -410,6 +426,59 @@
       "entityId": "717de03b-c428-4ec5-9dff-e60064a72c3b",
       "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
       "timestamp": "2026-03-05T07:33:30.447Z",
+      "metadata": {
+        "name": "CRM Analytics"
+      }
+    },
+    {
+      "id": "bdc888c3-c15c-4d7b-9624-2ef43aa9ef57",
+      "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "action": "PROJECT_CREATED",
+      "entityType": "PROJECT",
+      "entityId": "6c4d26eb-37a6-444b-b727-ad74a5b1b227",
+      "timestamp": "2026-03-05T08:59:02.926Z"
+    },
+    {
+      "id": "056286ce-666a-4466-bf25-5d1d9d7dc22b",
+      "action": "PROJECT_CREATED",
+      "entityType": "PROJECT",
+      "entityId": "6c4d26eb-37a6-444b-b727-ad74a5b1b227",
+      "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "timestamp": "2026-03-05T08:59:02.941Z",
+      "metadata": {
+        "name": "AI Marketing Dashboard"
+      }
+    },
+    {
+      "id": "b439abae-5591-4db1-a340-f107f9a682bc",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "action": "USER_LOGIN",
+      "entityType": "USER",
+      "entityId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "timestamp": "2026-03-05T09:16:06.334Z",
+      "metadata": {
+        "name": "raza",
+        "email": "raza@gmail.com"
+      }
+    },
+    {
+      "id": "1cb647fb-88b8-4ba6-be5a-bc62e68bc4ab",
+      "action": "PROJECT_UPDATED",
+      "entityType": "PROJECT",
+      "entityId": "717de03b-c428-4ec5-9dff-e60064a72c3b",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "timestamp": "2026-03-05T11:00:56.206Z",
+      "metadata": {
+        "name": "CRM Analytics"
+      }
+    },
+    {
+      "id": "f4eb5fb6-2448-44f0-a6fe-3977c1172745",
+      "action": "PROJECT_UPDATED",
+      "entityType": "PROJECT",
+      "entityId": "717de03b-c428-4ec5-9dff-e60064a72c3b",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "timestamp": "2026-03-05T11:01:05.044Z",
       "metadata": {
         "name": "CRM Analytics"
       }

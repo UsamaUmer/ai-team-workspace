@@ -3,6 +3,7 @@ import { useAppStore } from "../../../app/store";
 import { useHasPermission } from "../../../hooks/useHasPermission";
 import type { Project } from "../../../types/project.types";
 import ConfirmModal from "../../../components/ui/ConfirmModal";
+import ProjectEditModal from "./ProjectEditModal";
 
 const thStyle: React.CSSProperties = {
   padding: "12px 16px",
@@ -24,6 +25,10 @@ function ProjectsTable() {
 
   const canEdit = useHasPermission("EDIT_PROJECT");
   const canDelete = useHasPermission("DELETE_PROJECT");
+
+  /// editing project
+
+  const [editProject, setEditProject] = useState<Project | null>(null);
 
   const [confirmProject, setConfirmProject] = useState<Project | null>(null);
 
@@ -132,17 +137,6 @@ function ProjectsTable() {
               <td style={tdStyle}>{project.visibility}</td>
               <td style={tdStyle}>{project.members?.length || 0}</td>
 
-              {/* <td>
-                {(canEdit || canDelete) && (
-                  <>
-                    {canDelete && (
-                      <button onClick={() => setConfirmProject(project)}>
-                        Delete
-                      </button>
-                    )}
-                  </>
-                )}
-              </td> */}
               <td style={{ position: "relative" }}>
                 {(canEdit || canDelete) && (
                   <>
@@ -155,6 +149,15 @@ function ProjectsTable() {
 
                     {openId === project.id && (
                       <div ref={dropdownRef} style={dropdownStyle}>
+                        {canEdit && (
+                          <DropdownItem
+                            label="Edit"
+                            onClick={() => {
+                              setEditProject(project);
+                              setOpenId(null);
+                            }}
+                          />
+                        )}
                         {canDelete && (
                           <DropdownItem
                             label="Delete"
@@ -173,11 +176,16 @@ function ProjectsTable() {
       </table>
 
       <ConfirmModal
-        open={!!confirmProject}
+        open={confirmProject ? true : false}
         title="Confirm Delete"
         description={`Delete ${confirmProject?.name}?`}
         onCancel={() => setConfirmProject(null)}
         onConfirm={() => confirmProject && handleDelete(confirmProject)}
+      />
+      <ProjectEditModal
+        open={editProject ? true : false}
+        project={editProject}
+        onClose={() => setEditProject(null)}
       />
     </div>
   );

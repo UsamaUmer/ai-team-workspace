@@ -258,32 +258,13 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
   updateProject: async (id, data) => {
     try {
-      const { currentUser } = get();
-      if (!currentUser) return;
-
       const updated = await updateProjectApi(id, data);
 
       set((state) => ({
         projects: state.projects.map((p) => (p.id === id ? updated : p)),
       }));
-
-      // 🔥 Activity
-      const activity: Activity = {
-        id: crypto.randomUUID(),
-        userId: currentUser.id,
-        action: "PROJECT_UPDATED",
-        entityType: "PROJECT",
-        entityId: id,
-        timestamp: nowISO(),
-      };
-
-      const savedActivity = await createActivityApi(activity);
-
-      set((state) => ({
-        activities: [...state.activities, savedActivity],
-      }));
     } catch (error) {
-      console.error("Update project failed", error);
+      console.error("Project update failed", error);
     }
   },
   deleteProject: async (id) => {
