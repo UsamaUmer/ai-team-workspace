@@ -8,8 +8,8 @@
       "role": "SUPER_ADMIN",
       "status": "ACTIVE",
       "createdAt": "2026-03-03T05:57:57.066Z",
-      "updatedAt": "2026-03-04T08:34:03.362Z",
-      "lastLogin": "2026-03-04T08:34:03.362Z"
+      "updatedAt": "2026-03-04T11:45:11.236Z",
+      "lastLogin": "2026-03-04T11:45:11.236Z"
     },
     {
       "id": "e9b1f00d-5d40-4cfe-ab3d-1ba118c6ee59",
@@ -17,7 +17,7 @@
       "email": "ahmer@gmail.com",
       "password": "ahmer@",
       "role": "ADMIN",
-      "status": "ACTIVE",
+      "status": "SUSPENDED",
       "createdAt": "2026-03-03T06:11:36.347Z",
       "updatedAt": "2026-03-04T08:31:53.700Z",
       "lastLogin": "2026-03-04T08:31:53.700Z"
@@ -27,11 +27,11 @@
       "name": "Akbar",
       "email": "akbar@gmail.com",
       "password": "akbar@",
-      "role": "ADMIN",
+      "role": "MEMBER",
       "status": "ACTIVE",
       "createdAt": "2026-03-03T06:23:56.150Z",
-      "updatedAt": "2026-03-04T06:52:05.051Z",
-      "lastLogin": "2026-03-04T06:52:05.051Z"
+      "updatedAt": "2026-03-04T11:41:15.821Z",
+      "lastLogin": "2026-03-04T11:41:15.821Z"
     },
     {
       "id": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
@@ -41,8 +41,8 @@
       "role": "ADMIN",
       "status": "ACTIVE",
       "createdAt": "2026-03-03T06:42:47.585Z",
-      "updatedAt": "2026-03-04T08:32:38.113Z",
-      "lastLogin": "2026-03-04T08:32:38.113Z"
+      "updatedAt": "2026-03-04T11:08:18.761Z",
+      "lastLogin": "2026-03-04T11:08:18.761Z"
     }
   ],
   "projects": [
@@ -73,6 +73,21 @@
       "aiModel": "gpt-4-turbo",
       "createdAt": "2026-02-25T10:30:00.000Z",
       "updatedAt": "2026-02-28T09:15:00.000Z"
+    },
+    {
+      "id": "717de03b-c428-4ec5-9dff-e60064a72c3b",
+      "name": "CRM Analytics",
+      "description": "Internal CRM system for managing customer lifecycle.",
+      "status": "ACTIVE",
+      "visibility": "TEAM",
+      "members": [
+        "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+        "c412c91b-e0b2-44ba-b3ab-6c95fc985642"
+      ],
+      "createdBy": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "aiModel": "gpt-4-turbo",
+      "createdAt": "2026-03-05T07:33:30.405Z",
+      "updatedAt": "2026-03-05T07:33:30.405Z"
     }
   ],
   "activities": [
@@ -243,6 +258,161 @@
       "entityId": "project-internal-analytics",
       "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
       "timestamp": "2026-03-04T09:01:10.349Z"
+    },
+    {
+      "id": "924b78de-9dde-41e4-8a74-829fcbc52144",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "action": "USER_LOGIN",
+      "entityType": "USER",
+      "entityId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "timestamp": "2026-03-04T11:08:18.779Z",
+      "metadata": {
+        "name": "raza",
+        "email": "raza@gmail.com"
+      }
+    },
+    {
+      "id": "af594d07-d8d8-4102-9d37-5bc45b64a82e",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "action": "ROLE_CHANGED",
+      "entityType": "USER",
+      "entityId": "c412c91b-e0b2-44ba-b3ab-6c95fc985642",
+      "timestamp": "2026-03-04T11:08:56.856Z",
+      "metadata": {
+        "oldValue": "ADMIN",
+        "newValue": "MEMBER"
+      }
+    },
+    {
+      "id": "ad93b0b9-a535-41bf-801a-f59e686f221e",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "action": "ROLE_CHANGED",
+      "entityType": "USER",
+      "entityId": "c412c91b-e0b2-44ba-b3ab-6c95fc985642",
+      "timestamp": "2026-03-04T11:08:59.543Z",
+      "metadata": {
+        "oldValue": "MEMBER",
+        "newValue": "ADMIN"
+      }
+    },
+    {
+      "id": "ca034c2e-eb5f-42e8-8e15-6d1393cb7b86",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "action": "ROLE_CHANGED",
+      "entityType": "USER",
+      "entityId": "c412c91b-e0b2-44ba-b3ab-6c95fc985642",
+      "timestamp": "2026-03-04T11:09:01.493Z",
+      "metadata": {
+        "oldValue": "ADMIN",
+        "newValue": "MEMBER"
+      }
+    },
+    {
+      "id": "a3280428-80d8-4752-881a-ca1eac2b28d3",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "action": "USER_SUSPENDED",
+      "entityType": "USER",
+      "entityId": "e9b1f00d-5d40-4cfe-ab3d-1ba118c6ee59",
+      "timestamp": "2026-03-04T11:09:07.785Z"
+    },
+    {
+      "id": "63442130-07af-4da1-981d-ce68e08ce8a6",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "action": "ROLE_CHANGED",
+      "entityType": "USER",
+      "entityId": "e9b1f00d-5d40-4cfe-ab3d-1ba118c6ee59",
+      "timestamp": "2026-03-04T11:09:10.049Z",
+      "metadata": {
+        "oldValue": "ADMIN",
+        "newValue": "MEMBER"
+      }
+    },
+    {
+      "id": "20ac11f2-8dad-4200-8290-b85d48c680fc",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "action": "ROLE_CHANGED",
+      "entityType": "USER",
+      "entityId": "e9b1f00d-5d40-4cfe-ab3d-1ba118c6ee59",
+      "timestamp": "2026-03-04T11:09:12.063Z",
+      "metadata": {
+        "oldValue": "MEMBER",
+        "newValue": "ADMIN"
+      }
+    },
+    {
+      "id": "f95c4252-b4a6-4419-b329-f9042c7d83f0",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "action": "USER_ACTIVATED",
+      "entityType": "USER",
+      "entityId": "e9b1f00d-5d40-4cfe-ab3d-1ba118c6ee59",
+      "timestamp": "2026-03-04T11:09:14.117Z"
+    },
+    {
+      "id": "a9e89388-6369-4ae9-b916-cc62d5d323d0",
+      "userId": "c412c91b-e0b2-44ba-b3ab-6c95fc985642",
+      "action": "USER_LOGIN",
+      "entityType": "USER",
+      "entityId": "c412c91b-e0b2-44ba-b3ab-6c95fc985642",
+      "timestamp": "2026-03-04T11:41:15.837Z",
+      "metadata": {
+        "name": "Akbar",
+        "email": "akbar@gmail.com"
+      }
+    },
+    {
+      "id": "0d4b0e15-f85c-4be3-b8dd-6ccea46c6b66",
+      "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "action": "USER_LOGIN",
+      "entityType": "USER",
+      "entityId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "timestamp": "2026-03-04T11:45:11.251Z",
+      "metadata": {
+        "name": "Ali Super",
+        "email": "alisuper@saas.com"
+      }
+    },
+    {
+      "id": "8e4a3af7-e48c-4369-b1a4-095511bc3749",
+      "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "action": "USER_SUSPENDED",
+      "entityType": "USER",
+      "entityId": "c412c91b-e0b2-44ba-b3ab-6c95fc985642",
+      "timestamp": "2026-03-05T06:50:53.667Z"
+    },
+    {
+      "id": "e8b90d78-6113-412a-91ef-e6da58218420",
+      "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "action": "USER_ACTIVATED",
+      "entityType": "USER",
+      "entityId": "c412c91b-e0b2-44ba-b3ab-6c95fc985642",
+      "timestamp": "2026-03-05T06:51:10.179Z"
+    },
+    {
+      "id": "6cadde4e-093d-49a8-8e81-52f5365b16ea",
+      "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "action": "USER_SUSPENDED",
+      "entityType": "USER",
+      "entityId": "e9b1f00d-5d40-4cfe-ab3d-1ba118c6ee59",
+      "timestamp": "2026-03-05T06:51:14.374Z"
+    },
+    {
+      "id": "c9a8f0e9-ea96-480c-a29f-7d2426aefa73",
+      "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "action": "PROJECT_CREATED",
+      "entityType": "PROJECT",
+      "entityId": "717de03b-c428-4ec5-9dff-e60064a72c3b",
+      "timestamp": "2026-03-05T07:33:30.430Z"
+    },
+    {
+      "id": "4f65c587-0e62-4087-8d59-cb5d846ad0de",
+      "action": "PROJECT_CREATED",
+      "entityType": "PROJECT",
+      "entityId": "717de03b-c428-4ec5-9dff-e60064a72c3b",
+      "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "timestamp": "2026-03-05T07:33:30.447Z",
+      "metadata": {
+        "name": "CRM Analytics"
+      }
     }
   ]
 }

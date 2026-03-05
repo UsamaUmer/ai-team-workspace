@@ -25,12 +25,13 @@ function Sidebar() {
           flexDirection: "column",
           justifyContent: "center",
           alignContent: "center",
+          gap: "10px",
           alignItems: "flex-start",
         }}
       >
         {canViewDashboard && (
           <NavLink
-            to="/dashboard"
+            to="/dashboard" end
             style={({ isActive }) => ({
               fontWeight: isActive ? "bold" : "normal",
             })}

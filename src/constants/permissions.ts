@@ -33,7 +33,6 @@ export const rolePermissions: Record<Role, Permission[]> = {
     "EDIT_USER",
     "VIEW_PROJECT",
     "CREATE_PROJECT",
-    
     "EDIT_PROJECT",
     "VIEW_SETTINGS",
   ],
