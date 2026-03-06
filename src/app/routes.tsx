@@ -7,6 +7,7 @@ import UsersPage from "../modules/users/UsersPage";
 import SettingsPage from "../modules/settings/SettingsPage";
 import ProjectsPage from "../modules/projects/ProjectsPage";
 import PermissionRoute from "./PermissionRoute";
+import ActivityPage from "../modules/activity/ActivityPage";
 
 import { useAppStore } from "./store";
 
@@ -48,6 +49,7 @@ export default function AppRoutes() {
           }
         />
         <Route path="projects" element={<ProjectsPage />} />
+        <Route path="activity" element={<ActivityPage />} />
         <Route path="settings" element={<SettingsPage />} />
       </Route>
 

@@ -1,5 +1,7 @@
 import { useAppStore } from "../../../app/store";
 
+// import ActivityPage from "../../activity/ActivityPage";
+
 function ActivityFeed() {
   const activities = useAppStore((state) => state.activities);
   const users = useAppStore((state) => state.users);
@@ -8,6 +10,7 @@ function ActivityFeed() {
   const userMap = new Map(users.map((user) => [user.id, user]));
   return (
     <div>
+      {/* <ActivityPage></ActivityPage> */}
       {latestActivities ? latestActivities.map((activity) => {
         const userName = userMap.get(activity.userId);
         return (

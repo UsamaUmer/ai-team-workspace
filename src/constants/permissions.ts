@@ -10,6 +10,7 @@ export type Permission =
   | "CREATE_PROJECT"
   | "EDIT_PROJECT"
   | "DELETE_PROJECT"
+  | "VIEW_ACTIVITY"
   | "VIEW_SETTINGS";
 
 export const rolePermissions: Record<Role, Permission[]> = {
@@ -21,6 +22,7 @@ export const rolePermissions: Record<Role, Permission[]> = {
     "DELETE_USER",
     "VIEW_PROJECT",
     "CREATE_PROJECT",
+    "VIEW_ACTIVITY",
     "EDIT_PROJECT",
     "DELETE_PROJECT",
     "VIEW_SETTINGS",
@@ -33,11 +35,12 @@ export const rolePermissions: Record<Role, Permission[]> = {
     "EDIT_USER",
     "VIEW_PROJECT",
     "CREATE_PROJECT",
+    "VIEW_ACTIVITY",
     "EDIT_PROJECT",
     "VIEW_SETTINGS",
   ],
 
-  MEMBER: ["VIEW_DASHBOARD", "VIEW_PROJECT"],
+  MEMBER: ["VIEW_DASHBOARD", "VIEW_PROJECT", "VIEW_ACTIVITY"],
 
-  VIEWER: ["VIEW_DASHBOARD"],
+  VIEWER: ["VIEW_DASHBOARD", "VIEW_ACTIVITY"],
 };

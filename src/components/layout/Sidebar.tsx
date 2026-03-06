@@ -6,6 +6,7 @@ function Sidebar() {
   const canViewDashboard = useHasPermission("VIEW_DASHBOARD");
   const canViewProjects = useHasPermission("VIEW_PROJECT");
   const canViewSettings = useHasPermission("VIEW_SETTINGS");
+  const canViewActivity = useHasPermission("VIEW_ACTIVITY");
 
   return (
     <div
@@ -59,6 +60,17 @@ function Sidebar() {
             })}
           >
             Projects
+          </NavLink>
+        )}
+        
+        {canViewActivity  && (
+          <NavLink
+            to="/dashboard/activity"
+            style={({ isActive }) => ({
+              fontWeight: isActive ? "bold" : "normal",
+            })}
+          >
+            Activity
           </NavLink>
         )}
 

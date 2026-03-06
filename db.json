@@ -43,6 +43,16 @@
       "createdAt": "2026-03-03T06:42:47.585Z",
       "updatedAt": "2026-03-05T09:16:06.325Z",
       "lastLogin": "2026-03-05T09:16:06.325Z"
+    },
+    {
+      "id": "7eb1407d-b283-4e85-832c-0c063a8c0d08",
+      "name": "Bakar Ali",
+      "email": "bakar@gmail.com",
+      "password": "bakar@",
+      "role": "MEMBER",
+      "status": "ACTIVE",
+      "createdAt": "2026-03-06T12:00:30.553Z",
+      "updatedAt": "2026-03-06T12:00:30.554Z"
     }
   ],
   "projects": [
@@ -97,13 +107,12 @@
       "visibility": "PRIVATE",
       "members": [
         "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
-        "c412c91b-e0b2-44ba-b3ab-6c95fc985642",
         "73bc99c0-d39a-4115-bdf6-b89a0fbfa666"
       ],
       "createdBy": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
       "aiModel": "claude-3",
       "createdAt": "2026-03-05T08:59:02.890Z",
-      "updatedAt": "2026-03-05T08:59:02.890Z"
+      "updatedAt": "2026-03-06T05:46:32.809Z"
     }
   ],
   "activities": [
@@ -481,6 +490,29 @@
       "timestamp": "2026-03-05T11:01:05.044Z",
       "metadata": {
         "name": "CRM Analytics"
+      }
+    },
+    {
+      "id": "6320634e-9ce5-4988-8d7d-4d79fc44f583",
+      "action": "PROJECT_UPDATED",
+      "entityType": "PROJECT",
+      "entityId": "6c4d26eb-37a6-444b-b727-ad74a5b1b227",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "timestamp": "2026-03-06T05:46:32.875Z",
+      "metadata": {
+        "name": "AI Marketing Dashboard"
+      }
+    },
+    {
+      "id": "65b0a4c1-12a0-480b-a4fe-44ac2236a827",
+      "action": "USER_CREATED",
+      "entityType": "USER",
+      "entityId": "7eb1407d-b283-4e85-832c-0c063a8c0d08",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "timestamp": "2026-03-06T12:00:30.570Z",
+      "metadata": {
+        "name": "Bakar Ali",
+        "email": "bakar@gmail.com"
       }
     }
   ]
