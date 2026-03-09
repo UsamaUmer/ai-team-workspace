@@ -53,6 +53,26 @@
       "status": "ACTIVE",
       "createdAt": "2026-03-06T12:00:30.553Z",
       "updatedAt": "2026-03-06T12:00:30.554Z"
+    },
+    {
+      "id": "f6af80ca-ac93-4840-8e6a-c89090fc76cf",
+      "name": "Danish Aziz",
+      "email": "danish@gmail.com",
+      "password": "danish",
+      "role": "VIEWER",
+      "status": "SUSPENDED",
+      "createdAt": "2026-03-06T13:49:51.718Z",
+      "updatedAt": "2026-03-06T13:49:51.719Z"
+    },
+    {
+      "id": "3ac206df-4c3c-4d19-a5ba-674076085e34",
+      "name": "hassan",
+      "email": "hassan@gmail.com",
+      "password": "hassan",
+      "role": "VIEWER",
+      "status": "ACTIVE",
+      "createdAt": "2026-03-09T06:34:12.211Z",
+      "updatedAt": "2026-03-09T06:34:12.221Z"
     }
   ],
   "projects": [
@@ -113,6 +133,39 @@
       "aiModel": "claude-3",
       "createdAt": "2026-03-05T08:59:02.890Z",
       "updatedAt": "2026-03-06T05:46:32.809Z"
+    },
+    {
+      "id": "7c97e0a4-c999-433d-bee8-ec611255c6af",
+      "name": "Game Pool Analytics",
+      "description": "Analysis the game architecture\n",
+      "status": "ACTIVE",
+      "visibility": "TEAM",
+      "members": [
+        "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+        "c412c91b-e0b2-44ba-b3ab-6c95fc985642",
+        "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+        "3ac206df-4c3c-4d19-a5ba-674076085e34"
+      ],
+      "createdBy": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "aiModel": "claude-3",
+      "createdAt": "2026-03-09T06:35:09.651Z",
+      "updatedAt": "2026-03-09T07:05:34.628Z"
+    },
+    {
+      "id": "ccb7986b-1503-4a8d-a976-7c99d9773db1",
+      "name": "User Analytics Reports",
+      "description": "Managing User report",
+      "status": "ACTIVE",
+      "visibility": "TEAM",
+      "members": [
+        "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+        "c412c91b-e0b2-44ba-b3ab-6c95fc985642",
+        "73bc99c0-d39a-4115-bdf6-b89a0fbfa666"
+      ],
+      "createdBy": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "aiModel": "gpt-4-turbo",
+      "createdAt": "2026-03-09T07:06:21.206Z",
+      "updatedAt": "2026-03-09T07:06:21.206Z"
     }
   ],
   "activities": [
@@ -513,6 +566,87 @@
       "metadata": {
         "name": "Bakar Ali",
         "email": "bakar@gmail.com"
+      }
+    },
+    {
+      "id": "adf80110-2f6d-4ab5-8bfc-a44b52b18ab4",
+      "action": "USER_CREATED",
+      "entityType": "USER",
+      "entityId": "f6af80ca-ac93-4840-8e6a-c89090fc76cf",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "timestamp": "2026-03-06T13:49:51.732Z",
+      "metadata": {
+        "name": "Danish Aziz",
+        "email": "danish@gmail.com"
+      }
+    },
+    {
+      "id": "9a0326f2-2d42-474d-b542-eefd335c8115",
+      "action": "USER_CREATED",
+      "entityType": "USER",
+      "entityId": "3ac206df-4c3c-4d19-a5ba-674076085e34",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "timestamp": "2026-03-09T06:34:12.264Z",
+      "metadata": {
+        "name": "hassan",
+        "email": "hassan@gmail.com"
+      }
+    },
+    {
+      "id": "e5210a02-75fd-477a-a7ce-44540224fa38",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "action": "USER_SUSPENDED",
+      "entityType": "USER",
+      "entityId": "f6af80ca-ac93-4840-8e6a-c89090fc76cf",
+      "timestamp": "2026-03-09T06:34:21.227Z"
+    },
+    {
+      "id": "4e9d54c2-6bc6-48c5-b56a-ad490a27c2c1",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "action": "PROJECT_CREATED",
+      "entityType": "PROJECT",
+      "entityId": "7c97e0a4-c999-433d-bee8-ec611255c6af",
+      "timestamp": "2026-03-09T06:35:09.659Z"
+    },
+    {
+      "id": "7cce0576-6c24-4055-8ad7-036557e8182c",
+      "action": "PROJECT_CREATED",
+      "entityType": "PROJECT",
+      "entityId": "7c97e0a4-c999-433d-bee8-ec611255c6af",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "timestamp": "2026-03-09T06:35:09.669Z",
+      "metadata": {
+        "name": "Game Pool Analytics"
+      }
+    },
+    {
+      "id": "03ef2be8-6773-42e5-bb92-ca12a2697c40",
+      "action": "PROJECT_UPDATED",
+      "entityType": "PROJECT",
+      "entityId": "7c97e0a4-c999-433d-bee8-ec611255c6af",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "timestamp": "2026-03-09T07:05:34.640Z",
+      "metadata": {
+        "name": "Game Pool Analytics"
+      }
+    },
+    {
+      "id": "bc0ded33-38e7-420f-8a63-49a54bd2529a",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "action": "PROJECT_CREATED",
+      "entityType": "PROJECT",
+      "entityId": "ccb7986b-1503-4a8d-a976-7c99d9773db1",
+      "timestamp": "2026-03-09T07:06:21.214Z"
+    },
+    {
+      "id": "0ab3166f-28eb-43bc-b355-27db608eee49",
+      "action": "PROJECT_CREATED",
+      "entityType": "PROJECT",
+      "entityId": "ccb7986b-1503-4a8d-a976-7c99d9773db1",
+      "userId": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
+      "timestamp": "2026-03-09T07:06:21.222Z",
+      "metadata": {
+        "name": "User Analytics Reports"
       }
     }
   ]

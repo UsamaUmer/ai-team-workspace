@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppStore } from "../../../app/store";
 import type { Project } from "../../../types/project.types";
 import type { User } from "../../../types/user.types";
+import { useToast } from "../../../hooks/useToast";
 
 interface ProjectFormModalProps {
   open: boolean;
@@ -11,6 +12,7 @@ interface ProjectFormModalProps {
 const nowISO = () => new Date().toISOString();
 
 function ProjectFormModal({ open, onClose }: ProjectFormModalProps) {
+  const toast = useToast();
   const { users, currentUser, createProject, addActivity, loadUsers } =
     useAppStore();
 
@@ -85,10 +87,13 @@ function ProjectFormModal({ open, onClose }: ProjectFormModalProps) {
         metadata: { name: newProject.name },
       });
 
+      toast.success("Project Created Successfully")
       resetForm();
       onClose();
+
     } catch {
       setError("Failed to create project");
+      toast.error("Failed to create project");
     }
   }
 

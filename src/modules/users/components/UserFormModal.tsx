@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAppStore } from "../../../app/store";
 import type { User, Role } from "../../../types/user.types";
+import { useToast } from "../../../hooks/useToast";
 
 interface UserFormModalProps {
   open: boolean;
@@ -10,6 +11,7 @@ interface UserFormModalProps {
 const nowISO = () => new Date().toISOString();
 
 function UserFormModal({ open, onClose }: UserFormModalProps) {
+  const toast = useToast();
   const { users, currentUser, createUser, addActivity } = useAppStore();
 
   const [name, setName] = useState("");
@@ -80,8 +82,10 @@ function UserFormModal({ open, onClose }: UserFormModalProps) {
 
       resetForm();
       onClose();
+      toast.success("User created successfully");
     } catch {
       setError("Something went wrong");
+      toast.error("Failed to create user");
     }
   };
 

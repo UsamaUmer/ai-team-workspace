@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
+import ToastContainer from "../ui/ToastContainer";
 
 function DashboardLayout() {
   return (
@@ -15,6 +16,7 @@ function DashboardLayout() {
           <Outlet />
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

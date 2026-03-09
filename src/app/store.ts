@@ -29,6 +29,14 @@ import {
 /* =======================
    App State Interface
 ======================= */
+export type ToastType = "success" | "error" | "warning" | "info";
+
+export interface Toast {
+  id: string;
+  message: string;
+  type: ToastType;
+}
+
 export interface AppState {
   /* -------------------
      STATE
@@ -40,9 +48,14 @@ export interface AppState {
   isLoading: boolean;
   error: string | null;
 
+  toasts: Toast[];
+
   /* -------------------
      ACTIONS / MUTATIONS
   ------------------- */
+  //toast
+  addToast: (message: string, type: ToastType) => void;
+  removeToast: (id: string) => void;
   ///Users
   loadUsers: () => Promise<void>;
   login: (email: string, password: string) => Promise<boolean>;
@@ -85,6 +98,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   /* -------------------
      STATE
   ------------------- */
+  toasts: [],
   currentUser: initialUser,
   users: [],
   projects: [],
@@ -337,5 +351,23 @@ export const useAppStore = create<AppState>((set, get) => ({
   logout: () => {
     localStorage.removeItem("currentUser");
     set({ currentUser: null });
+  },
+  // Toast
+  addToast: (message, type) => {
+    const toast = {
+      id: crypto.randomUUID(),
+      message,
+      type,
+    };
+
+    set((state) => ({
+      toasts: [...state.toasts, toast],
+    }));
+  },
+
+  removeToast: (id) => {
+    set((state) => ({
+      toasts: state.toasts.filter((t) => t.id !== id),
+    }));
   },
 }));
