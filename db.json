@@ -8,8 +8,8 @@
       "role": "SUPER_ADMIN",
       "status": "ACTIVE",
       "createdAt": "2026-03-03T05:57:57.066Z",
-      "updatedAt": "2026-03-04T11:45:11.236Z",
-      "lastLogin": "2026-03-04T11:45:11.236Z"
+      "updatedAt": "2026-03-27T15:35:24.628Z",
+      "lastLogin": "2026-03-27T15:35:24.620Z"
     },
     {
       "id": "e9b1f00d-5d40-4cfe-ab3d-1ba118c6ee59",
@@ -35,14 +35,15 @@
     },
     {
       "id": "73bc99c0-d39a-4115-bdf6-b89a0fbfa666",
-      "name": "raza",
+      "name": "raza asghar",
       "email": "raza@gmail.com",
       "password": "raza@@",
       "role": "ADMIN",
       "status": "ACTIVE",
       "createdAt": "2026-03-03T06:42:47.585Z",
-      "updatedAt": "2026-03-05T09:16:06.325Z",
-      "lastLogin": "2026-03-05T09:16:06.325Z"
+      "updatedAt": "2026-03-25T08:14:34.649Z",
+      "lastLogin": "2026-03-25T07:57:46.024Z",
+      "avatar": ""
     },
     {
       "id": "7eb1407d-b283-4e85-832c-0c063a8c0d08",
@@ -647,6 +648,42 @@
       "timestamp": "2026-03-09T07:06:21.222Z",
       "metadata": {
         "name": "User Analytics Reports"
+      }
+    },
+    {
+      "id": "c6a70ac5-c36b-4180-b166-da54248a772c",
+      "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "action": "USER_LOGIN",
+      "entityType": "USER",
+      "entityId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "timestamp": "2026-03-25T10:44:44.808Z",
+      "metadata": {
+        "name": "Ali Super",
+        "email": "alisuper@saas.com"
+      }
+    },
+    {
+      "id": "712801f9-a3d1-41a2-97f7-15e1aeebc320",
+      "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "action": "USER_LOGIN",
+      "entityType": "USER",
+      "entityId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "timestamp": "2026-03-25T11:53:03.347Z",
+      "metadata": {
+        "name": "Ali Super",
+        "email": "alisuper@saas.com"
+      }
+    },
+    {
+      "id": "a51edf5e-c17c-494c-a32f-67c6905825d3",
+      "userId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "action": "USER_LOGIN",
+      "entityType": "USER",
+      "entityId": "3a0db18a-0fe0-49c7-b74d-0bd3b3fcdd15",
+      "timestamp": "2026-03-27T15:35:24.662Z",
+      "metadata": {
+        "name": "Ali Super",
+        "email": "alisuper@saas.com"
       }
     }
   ]

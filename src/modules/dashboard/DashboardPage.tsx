@@ -3,12 +3,20 @@ import { useAppStore } from "../../app/store";
 import StatsCard from "./components/StatsCard";
 import ActivityFeed from "./components/ActivityFeed";
 import ProjectsOverview from "./components/ProjectsOverview";
+import Card from "../../components/Card/Card";
+
 import { useEffect } from "react";
 
 function DashboardPage() {
-  const loadUsers = useAppStore((state)=> {return state.loadUsers});
-  const loadActivities = useAppStore((state)=> {return state.loadActivities});
-  const loadProjects = useAppStore((state)=>{return state.loadProjects});
+  const loadUsers = useAppStore((state) => {
+    return state.loadUsers;
+  });
+  const loadActivities = useAppStore((state) => {
+    return state.loadActivities;
+  });
+  const loadProjects = useAppStore((state) => {
+    return state.loadProjects;
+  });
   useEffect(() => {
     loadUsers();
     loadActivities();
@@ -34,7 +42,9 @@ function DashboardPage() {
 
       {/* Projects Overview */}
       <h2>Projects</h2>
-      <ProjectsOverview />
+      <Card>
+        <ProjectsOverview />
+      </Card>
     </div>
   );
 }

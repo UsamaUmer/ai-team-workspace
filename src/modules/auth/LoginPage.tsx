@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAppStore } from "../../app/store";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/ui/Button/Button";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -46,7 +47,7 @@ function LoginPage() {
       />
       {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
       {/* {password} */}
-      <button type="submit">Submit</button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 }

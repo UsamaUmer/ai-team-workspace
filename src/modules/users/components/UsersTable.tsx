@@ -196,8 +196,10 @@ import { useHasPermission } from "../../../hooks/useHasPermission";
 import type { User } from "../../../types/user.types";
 import type { Activity } from "../../../types/activity.types";
 import ConfirmModal from "../../../components/ui/ConfirmModal";
+import "../../../components/ui/Table/Table.css";
 
 import React from "react";
+import Button from "../../../components/ui/Button/Button";
 
 const nowISO = () => new Date().toISOString();
 
@@ -218,7 +220,7 @@ function UsersTable() {
   const currentUser = useAppStore((state) => state.currentUser);
   const updateUser = useAppStore((state) => state.updateUser);
   const addActivity = useAppStore((state) => state.addActivity);
-  const deleteUser = useAppStore((state)=> state.deleteUser);
+  const deleteUser = useAppStore((state) => state.deleteUser);
 
   const canEdit = useHasPermission("EDIT_USER");
   const canDelete = useHasPermission("DELETE_USER");
@@ -274,7 +276,7 @@ function UsersTable() {
 
   // Confirming delete user
 
-  async function confirmDelete () {
+  async function confirmDelete() {
     if (!confirmUser || !currentUser) return;
 
     await deleteUser(confirmUser.id);
@@ -322,9 +324,9 @@ function UsersTable() {
   function handleRoleChange(user: User) {
     if (!currentUser) return; // check if current user is null
     if (user.role === "SUPER_ADMIN") {
-        alert("SUPER ADMIN role cannot be changed");
-        return ;
-    }; // check if the current user is not SuperAdmin
+      alert("SUPER ADMIN role cannot be changed");
+      return;
+    } // check if the current user is not SuperAdmin
 
     if (user.id === currentUser.id) {
       alert(`${user.name} can not change his/her own role`);
@@ -352,31 +354,18 @@ function UsersTable() {
 
   // styling
 
-  const tdStyle = {
-    padding: "14px 16px",
-    fontSize: "14px",
-    color: "#374151",
-    borderBottom: "1px solid #f9fafb",
-    verticalAlign: "middle",
-  };
+
 
   return (
-    <div
-      style={{
-        border: "1px solid #e5e7eb",
-        borderRadius: "8px",
-        overflow: "visible",
-        background: "#fff",
-      }}
-    >
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead style={{ background: "#f9fafb" }}>
+    <>
+      <table className="table">
+        <thead>
           <tr>
-            <th style={thStyle}>Name</th>
-            <th style={thStyle}>Email</th>
-            <th style={thStyle}>Role</th>
-            <th style={thStyle}>Status</th>
-            <th style={thStyle}>Last Login</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Last Login</th>
             <th style={{ ...thStyle, textAlign: "center" }}>Actions</th>
           </tr>
         </thead>
@@ -384,21 +373,14 @@ function UsersTable() {
           {users.map((user) => (
             <tr
               key={user.id}
-              style={{ transition: "background 0.1s" }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.background = "#fafafa")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.background = "transparent")
-              }
             >
               <td>
                 <span style={{ fontWeight: 500, color: "#111827" }}>
                   {user.name}
                 </span>
               </td>
-              <td style={{ ...tdStyle, color: "#6b7280" }}>{user.email}</td>
-              <td style={tdStyle}>
+              <td>{user.email}</td>
+              <td>
                 <span
                   style={{
                     background: "#f3f4f6",
@@ -412,12 +394,12 @@ function UsersTable() {
                   {user.role}
                 </span>
               </td>
-              <td style={tdStyle}>
+              <td>
                 <span style={getStatusBadgeStyle(user.status)}>
                   {user.status}
                 </span>
               </td>
-              <td style={{ ...tdStyle, color: "#9ca3af", fontSize: "13px" }}>
+              <td>
                 {user.lastLogin
                   ? new Date(user.lastLogin).toLocaleDateString("en-US", {
                       month: "short",
@@ -429,12 +411,12 @@ function UsersTable() {
               <td style={{ position: "relative" }}>
                 {(canEdit || canDelete) && (
                   <>
-                    <button
+                    <Button
                       onClick={() => toggleDropdown(user.id)}
-                      style={actionButtonStyle}
+                      variant="ghost"
                     >
                       ⋮
-                    </button>
+                    </Button>
 
                     {openId === user.id && (
                       <div ref={dropdownRef} style={dropdownStyle}>
@@ -488,7 +470,7 @@ function UsersTable() {
         onCancel={() => setConfirmUser(null)}
         onConfirm={confirmDelete}
       />
-    </div>
+    </>
   );
 }
 
@@ -513,13 +495,6 @@ function DropdownItem({ label, onClick, danger }: DropdownItemProps) {
     </button>
   );
 }
-const actionButtonStyle: React.CSSProperties = {
-  background: "transparent",
-  border: "none",
-  cursor: "pointer",
-  fontSize: "18px",
-  padding: "4px 8px",
-};
 
 const dropdownStyle: React.CSSProperties = {
   position: "absolute",

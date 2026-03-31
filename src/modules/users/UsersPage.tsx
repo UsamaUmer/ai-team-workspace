@@ -1,9 +1,12 @@
 import UsersTable from "./components/UsersTable";
 import UserFormModal from "./components/UserFormModal";
+import Card from "../../components/Card/Card";
+
 import { useAppStore } from "../../app/store";
 import { useState, useEffect } from "react";
 
 import { useHasPermission } from "../../hooks/useHasPermission";
+import Button from "../../components/ui/Button/Button";
 
 function UsersPage() {
   const canViewUsers = useHasPermission("VIEW_USERS");
@@ -27,15 +30,14 @@ function UsersPage() {
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h2>Users</h2>
         {canCreateUser && (
-          <button
-            style={{ background: "none", border: "none", cursor: "pointer" }}
-            onClick={openCreateModal}
-          >
+          <Button variant="ghost" onClick={openCreateModal}>
             + Create User
-          </button>
+          </Button>
         )}
       </div>
-      {isLoading ? <p>Loading Users...</p> : <UsersTable></UsersTable>}
+      <Card>
+        {isLoading ? <p>Loading Users...</p> : <UsersTable></UsersTable>}
+      </Card>
       <UserFormModal open={isCreateOpen} onClose={closeCreateModal} />
     </div>
   );

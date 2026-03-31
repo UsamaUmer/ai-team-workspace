@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { useHasPermission } from "../../hooks/useHasPermission";
 
+import "./Sidebar.css";
+
 function Sidebar() {
   const canViewUsers = useHasPermission("VIEW_USERS");
   const canViewDashboard = useHasPermission("VIEW_DASHBOARD");
@@ -9,82 +11,44 @@ function Sidebar() {
   const canViewActivity = useHasPermission("VIEW_ACTIVITY");
 
   return (
-    <div
-      style={{
-        width: "220px",
-        background: "#bfbbbb",
-        color: "#fff",
-        padding: "20px",
-        
-      }}
-    >
-      <h2>AI Workspace</h2>
+    <div className="sidebar">
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignContent: "center",
-          gap: "10px",
-          alignItems: "flex-start",
-        }}
-      >
+      <h2 className="logo">AI Workspace</h2>
+
+      <div className="menu">
+
         {canViewDashboard && (
-          <NavLink
-            to="/dashboard" end
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "normal",
-            })}
-          >
+          <NavLink to="/dashboard" end className="nav-link">
             Dashboard
           </NavLink>
         )}
 
         {canViewUsers && (
-          <NavLink
-            to="/dashboard/users"
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "normal",
-            })}
-          >
+          <NavLink to="/dashboard/users" className="nav-link">
             Users
           </NavLink>
         )}
 
         {canViewProjects && (
-          <NavLink
-            to="/dashboard/projects"
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "normal",
-            })}
-          >
+          <NavLink to="/dashboard/projects" className="nav-link">
             Projects
           </NavLink>
         )}
-        
-        {canViewActivity  && (
-          <NavLink
-            to="/dashboard/activity"
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "normal",
-            })}
-          >
+
+        {canViewActivity && (
+          <NavLink to="/dashboard/activity" className="nav-link">
             Activity
           </NavLink>
         )}
 
         {canViewSettings && (
-          <NavLink
-            to="/dashboard/settings"
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "normal",
-            })}
-          >
+          <NavLink to="/dashboard/settings" className="nav-link">
             Settings
           </NavLink>
         )}
+
       </div>
+
     </div>
   );
 }

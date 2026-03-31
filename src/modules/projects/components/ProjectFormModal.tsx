@@ -3,6 +3,7 @@ import { useAppStore } from "../../../app/store";
 import type { Project } from "../../../types/project.types";
 import type { User } from "../../../types/user.types";
 import { useToast } from "../../../hooks/useToast";
+import Button from "../../../components/ui/Button/Button";
 
 interface ProjectFormModalProps {
   open: boolean;
@@ -87,10 +88,9 @@ function ProjectFormModal({ open, onClose }: ProjectFormModalProps) {
         metadata: { name: newProject.name },
       });
 
-      toast.success("Project Created Successfully")
+      toast.success("Project Created Successfully");
       resetForm();
       onClose();
-
     } catch {
       setError("Failed to create project");
       toast.error("Failed to create project");
@@ -158,9 +158,12 @@ function ProjectFormModal({ open, onClose }: ProjectFormModalProps) {
           </div>
 
           <div style={{ marginTop: "12px" }}>
-            <button type="submit">Create</button>
+            <Button variant="primary" type="submit">
+              Create
+            </Button>
 
-            <button
+            <Button
+              variant="danger"
               type="button"
               onClick={() => {
                 resetForm();
@@ -168,7 +171,7 @@ function ProjectFormModal({ open, onClose }: ProjectFormModalProps) {
               }}
             >
               Cancel
-            </button>
+            </Button>
           </div>
         </form>
       </div>

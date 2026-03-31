@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+h2 {
+  margin-bottom: 16px;
+}
+
+button {
+  cursor: pointer;
+}

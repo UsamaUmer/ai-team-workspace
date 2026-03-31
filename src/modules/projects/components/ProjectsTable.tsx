@@ -4,6 +4,9 @@ import { useHasPermission } from "../../../hooks/useHasPermission";
 import type { Project } from "../../../types/project.types";
 import ConfirmModal from "../../../components/ui/ConfirmModal";
 import ProjectEditModal from "./ProjectEditModal";
+import "../../../components/ui/Table/Table.css";
+import Button from "../../../components/ui/Button/Button";
+// import Button from "../../../components/ui/Button/Button";
 
 const thStyle: React.CSSProperties = {
   padding: "12px 16px",
@@ -78,22 +81,15 @@ function ProjectsTable() {
   };
 
   return (
-    <div
-      style={{
-        border: "1px solid #e5e7eb",
-        borderRadius: "8px",
-        overflow: "visible",
-        background: "#fff",
-      }}
-    >
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead style={{ background: "#f9fafb" }}>
+    <>
+      <table className="table">
+        <thead >
           <tr>
-            <th style={thStyle}>Name</th>
-            <th style={thStyle}>Status</th>
-            <th style={thStyle}>Visibility</th>
-            <th style={thStyle}>Members</th>
-            <th style={thStyle}>Actions</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Visibility</th>
+            <th>Members</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -101,16 +97,9 @@ function ProjectsTable() {
           {projects.map((project) => (
             <tr
               key={project.id}
-              style={{ transition: "background 0.1s" }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.background = "#fafafa")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.background = "transparent")
-              }
             >
-              <td style={tdStyle}>{project.name}</td>
-              <td style={tdStyle}>
+              <td>{project.name}</td>
+              <td>
                 <span
                   style={{
                     padding: "4px 10px",
@@ -134,18 +123,19 @@ function ProjectsTable() {
                   {project.status}
                 </span>
               </td>
-              <td style={tdStyle}>{project.visibility}</td>
-              <td style={tdStyle}>{project.members?.length || 0}</td>
+              <td>{project.visibility}</td>
+              <td>{project.members?.length || 0}</td>
 
               <td style={{ position: "relative" }}>
                 {(canEdit || canDelete) && (
                   <>
-                    <button
+                    <Button
                       onClick={() => toggleDropdown(project.id)}
-                      style={actionButtonStyle}
+                      // style={actionButtonStyle}
+                      variant="ghost"
                     >
                       ⋮
-                    </button>
+                    </Button>
 
                     {openId === project.id && (
                       <div ref={dropdownRef} style={dropdownStyle}>
@@ -187,7 +177,7 @@ function ProjectsTable() {
         project={editProject}
         onClose={() => setEditProject(null)}
       />
-    </div>
+    </>
   );
 }
 
@@ -221,13 +211,7 @@ function DropdownItem({ label, onClick, danger }: DropdownItemProps) {
     </button>
   );
 }
-const actionButtonStyle: React.CSSProperties = {
-  background: "transparent",
-  border: "none",
-  cursor: "pointer",
-  fontSize: "18px",
-  padding: "4px 8px",
-};
+
 
 const dropdownStyle: React.CSSProperties = {
   position: "absolute",

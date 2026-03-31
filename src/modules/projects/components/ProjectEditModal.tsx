@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAppStore } from "../../../app/store";
 import type { User } from "../../../types/user.types";
 import type { Project } from "../../../types/project.types";
+import Button from "../../../components/ui/Button/Button";
 
 interface ProjectEditModalProps {
   open: boolean;
@@ -141,16 +142,19 @@ function ProjectEditModal({ open, project, onClose }: ProjectEditModalProps) {
           </div>
 
           <div style={{ marginTop: "12px" }}>
-            <button type="submit">Save Changes</button>
+            <Button variant="primary" type="submit">
+              Save Changes
+            </Button>
 
-            <button
+            <Button
+              variant="danger"
               type="button"
               onClick={() => {
                 onClose();
               }}
             >
               Cancel
-            </button>
+            </Button>
           </div>
         </form>
       </div>

@@ -1,4 +1,5 @@
 import { useAppStore } from "../../../app/store";
+import { formatDistanceToNow } from "date-fns";
 
 // import ActivityPage from "../../activity/ActivityPage";
 
@@ -11,17 +12,21 @@ function ActivityFeed() {
   return (
     <div>
       {/* <ActivityPage></ActivityPage> */}
-      {latestActivities ? latestActivities.map((activity) => {
-        const userName = userMap.get(activity.userId);
-        return (
-          <div key={activity.id} style={{ marginBottom: "12px" }}>
-            <strong>{userName?.name}</strong> performed {activity.action}
-            <div style={{ fontSize: "12px", opacity: 0.7 }}>
-              {activity.timestamp}
-            </div>
-          </div>
-        );
-      }) : 'No recent activity.'}
+      {latestActivities
+        ? latestActivities.map((activity) => {
+            const userName = userMap.get(activity.userId);
+            return (
+              <div key={activity.id} style={{ marginBottom: "12px" }}>
+                <strong>{userName?.name}</strong> performed {activity.action}
+                <div style={{ fontSize: "12px", opacity: 0.7 }}>
+                  {formatDistanceToNow(new Date(activity.timestamp), {
+                    addSuffix: true,
+                  })}
+                </div>
+              </div>
+            );
+          })
+        : "No recent activity."}
     </div>
   );
 }

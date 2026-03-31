@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useHasPermission } from "../../hooks/useHasPermission";
 import ProjectsTable from "./components/ProjectsTable";
 import ProjectFormModal from "./components/ProjectFormModal";
+import Button from "../../components/ui/Button/Button";
+import Card from "../../components/Card/Card";
 
 function ProjectsPage() {
   const loadProjects = useAppStore((s) => s.loadProjects);
@@ -25,16 +27,19 @@ function ProjectsPage() {
         <h2>Projects</h2>
 
         {canCreateProject && (
-          <button
-            style={{ background: "none", border: "none", cursor: "pointer" }}
+          <Button
+          variant="ghost"
+            
             onClick={() => setIsCreateOpen(true)}
           >
             + Create Project
-          </button>
+          </Button>
         )}
       </div>
-
-      {isLoading ? <p>Loading projects...</p> : <ProjectsTable />}
+        <Card>
+          {isLoading ? <p>Loading projects...</p> : <ProjectsTable />}
+        </Card>
+      
 
       <ProjectFormModal
         open={isCreateOpen}

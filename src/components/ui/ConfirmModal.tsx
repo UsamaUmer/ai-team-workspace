@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button/Button";
 
 interface ConfirmModalProps {
   open: boolean;
@@ -24,13 +25,13 @@ function ConfirmModal({
         <p>{description}</p>
 
         <div style={buttonContainer}>
-          <button onClick={onCancel}>Cancel</button>
-          <button
+          <Button variant="ghost" onClick={onCancel}>Cancel</Button>
+          <Button
             onClick={onConfirm}
-            style={{ background: "red", color: "#fff" }}
+            variant="danger"
           >
             Confirm
-          </button>
+          </Button>
         </div>
       </div>
     </div>

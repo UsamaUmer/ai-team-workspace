@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAppStore } from "../../../app/store";
 import type { User, Role } from "../../../types/user.types";
 import { useToast } from "../../../hooks/useToast";
+import Button from "../../../components/ui/Button/Button";
 
 interface UserFormModalProps {
   open: boolean;
@@ -132,17 +133,17 @@ function UserFormModal({ open, onClose }: UserFormModalProps) {
           </select>
 
           <div style={{ marginTop: "12px" }}>
-            <button type="submit">Create</button>
-            <button
+            <Button variant="primary" type="submit">Create</Button>
+            <Button
               type="button"
               onClick={() => {
                 resetForm();
                 onClose();
               }}
-              style={{ marginLeft: "8px" }}
+              variant="primary"
             >
               Cancel
-            </button>
+            </Button>
           </div>
         </form>
       </div>
